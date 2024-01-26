@@ -30,7 +30,7 @@ export function OrderStatus({ status }: OrderStatusProps) {
         <span className="h-2 w-2 rounded-full bg-emerald-400" />
       )}
       {['processing', 'delivering'].includes(status) && (
-        <span className="h-2 w-2 rounded-full bg-slate-400" />
+        <span className="h-2 w-2 rounded-full bg-amber-400" />
       )}
 
       <span className="font-medium text-muted-foreground">
