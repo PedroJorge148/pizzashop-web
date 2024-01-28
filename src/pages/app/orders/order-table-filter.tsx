@@ -29,17 +29,58 @@ export function OrderTableFilters() {
   const customerName = searchParams.get('customerName')
   const status = searchParams.get('status')
 
-  const { register, handleSubmit, control } = useForm<OrderFilterSchema>({
-    resolver: zodResolver(orderFilterSchema),
-    defaultValues: {
-      orderId: orderId ?? '',
-      customerName: customerName ?? '',
-      status: status ?? 'all',
+  const { register, handleSubmit, control, reset } = useForm<OrderFilterSchema>(
+    {
+      resolver: zodResolver(orderFilterSchema),
+      defaultValues: {
+        orderId: orderId ?? '',
+        customerName: customerName ?? '',
+        status: status ?? 'all',
+      },
     },
-  })
+  )
 
-  function handleFilter(data: OrderFilterSchema) {
-    console.log(data)
+  function handleFilter({ orderId, customerName, status }: OrderFilterSchema) {
+    setSearchParams((state) => {
+      if (orderId) {
+        state.set('orderId', orderId)
+      } else {
+        state.delete('orderId')
+      }
+
+      if (customerName) {
+        state.set('customerName', customerName)
+      } else {
+        state.delete('customerName')
+      }
+
+      if (status) {
+        state.set('status', status)
+      } else {
+        state.delete('status')
+      }
+
+      state.set('page', '1')
+
+      return state
+    })
+  }
+
+  function handleClearFilters() {
+    setSearchParams((state) => {
+      state.delete('orderId')
+      state.delete('custumerName')
+      state.delete('status')
+      state.set('page', '1')
+
+      return state
+    })
+
+    reset({
+      orderId: '',
+      customerName: '',
+      status: 'all',
+    })
   }
 
   return (
@@ -91,7 +132,12 @@ export function OrderTableFilters() {
         Filtrar resultados
       </Button>
 
-      <Button type="button" variant="outline" size="xs">
+      <Button
+        onClick={handleClearFilters}
+        type="button"
+        variant="outline"
+        size="xs"
+      >
         <X className="mr-2 h-4 w-4" />
         Remover filtros
       </Button>
