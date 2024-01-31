@@ -1,4 +1,4 @@
-export type OrderStatus =
+export type OrderStatusType =
   | 'pending'
   | 'canceled'
   | 'processing'
@@ -6,10 +6,10 @@ export type OrderStatus =
   | 'delivered'
 
 interface OrderStatusProps {
-  status: OrderStatus
+  status: OrderStatusType
 }
 
-const orderStatusMap: Record<OrderStatus, string> = {
+const orderStatusMap: Record<OrderStatusType, string> = {
   pending: 'Pendente',
   canceled: 'Cancelado',
   delivered: 'Entregue',

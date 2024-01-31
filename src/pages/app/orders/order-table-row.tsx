@@ -9,7 +9,7 @@ import { cancelOrder } from '@/api/cancel-order'
 import { deliverOrder } from '@/api/deliver-order'
 import { dispatchOrder } from '@/api/dispatch-order'
 import { GetOrderResponse } from '@/api/get-orders'
-import { OrderStatus } from '@/components/order-status'
+import { OrderStatus, OrderStatusType } from '@/components/order-status'
 import { Button } from '@/components/ui/button'
 import { TableCell, TableRow } from '@/components/ui/table'
 import { queryClient } from '@/lib/react-query'
@@ -27,7 +27,7 @@ interface OrderTableRowProps {
 }
 
 export function OrderTableRow({ order }: OrderTableRowProps) {
-  function updateOrderStatusOnCache(orderId: string, status: OrderStatus) {
+  function updateOrderStatusOnCache(orderId: string, status: OrderStatusType) {
     const orderListCache = queryClient.getQueriesData<GetOrderResponse>({
       queryKey: ['orders'],
     })
