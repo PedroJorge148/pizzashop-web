@@ -1,7 +1,11 @@
-import { StoreProfileSchema } from '@/components/store-profile-dialog'
 import { api } from '@/lib/axios'
 
-export async function updateProfile({ name, description }: StoreProfileSchema) {
+export interface UpdateProfileBody {
+  name: string
+  description: string | null
+}
+
+export async function updateProfile({ name, description }: UpdateProfileBody) {
   // await new Promise((resolve, reject) => {
   //   setTimeout(reject, 2000)
   // })

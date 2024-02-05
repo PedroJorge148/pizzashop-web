@@ -49,7 +49,7 @@ export function Pagination({
             onClick={() => onPageChange(pageIndex - 1)}
           >
             <ChevronLeft className="h-4 w-4" />
-            <span className="sr-only">Página anterior página</span>
+            <span className="sr-only">Página anterior</span>
           </Button>
           <Button
             variant="outline"
